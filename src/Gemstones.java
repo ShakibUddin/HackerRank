@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 public class Gemstones {
     public static void main(String[] args){
@@ -14,10 +13,16 @@ public class Gemstones {
         }
         firstStone=stones.get(0);
         for(int i=0;i<firstStone.length();++i){
-            CharSequence chsq = String.valueOf(firstStone.charAt(i));
             for(int j=1;j<n;++j){
-                if(stones.get(j).contains(chsq)){
-                    ++occurrence;
+                for(int k=0;k<stones.get(j).length();++k){
+                    if(stones.get(j).charAt(k)==firstStone.charAt(i)){
+                        StringBuilder s=new StringBuilder();
+                        s.append(stones.get(j));
+                        s.setCharAt(k,'*');
+                        stones.set(j,s.toString());
+                        ++occurrence;
+                        break;
+                    }
                 }
                 if(occurrence==n){
                     gemstone=true;
